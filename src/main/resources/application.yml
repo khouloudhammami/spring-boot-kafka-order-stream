@@ -19,5 +19,5 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
-        # Indispensable pour que Spring accepte de désérialiser tes classes
+        # Indispensable pour que Spring accepte de désérialiser des classes
         spring.json.trusted.packages: "*"
