@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: kafka-mastery
+  
+  kafka:
+    # L'adresse de notre conteneur Docker
+    bootstrap-servers: localhost:9092
+    
+    producer:
+      # On transforme la clé en String et l'objet Order en JSON
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    
+    consumer:
+      # Identifiant du groupe (important pour le parallélisme)
+      group-id: inventory-group
+      # "earliest" signifie qu'on lit depuis le début si c'est un nouveau groupe
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        # Indispensable pour que Spring accepte de désérialiser tes classes
+        spring.json.trusted.packages: "*"
